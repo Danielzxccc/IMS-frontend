@@ -11,6 +11,7 @@ import { UserAuth } from '../context/authContext'
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [disable, setDisable] = useState(false)
   const navigate = useNavigate()
   const { setUserData, setToken } = UserAuth()
 
@@ -41,6 +42,7 @@ const Login = () => {
 
       setUserData(response.data.user)
       setToken(true)
+      setDisable(true)
 
       setTimeout(() => {
         navigate('/dashboard')
@@ -58,7 +60,7 @@ const Login = () => {
           theme: 'dark',
         })
       } else if (err.response?.status === 400) {
-        await toast.error('Missing Username or Password', {
+        await toast.error('Invalid Username', {
           position: 'top-center',
           autoClose: 5000,
           hideProgressBar: false,
@@ -117,9 +119,15 @@ const Login = () => {
             />
           </div>
           <div className='btn-parent'>
-            <button className='btn' type='submit'>
-              ENTER
-            </button>
+            {disable ? (
+              <button className='btn' type='submit' disabled>
+                ENTER
+              </button>
+            ) : (
+              <button className='btn' type='submit'>
+                ENTER
+              </button>
+            )}
           </div>
         </form>
       </div>

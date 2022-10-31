@@ -6,6 +6,8 @@ import Dashboard from './components/Dashboard'
 import Unauthorize from './components/Unauthorize'
 import Login from './components/Login'
 import PersistLogin from './components/PersistLogin'
+import MissingPage from './components/pages/MissingPage'
+import Products from './components/Products'
 
 const ROLES = {
   Employee: 'Employee',
@@ -27,11 +29,13 @@ function App() {
             }
           >
             <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/unauthorize' element={<Unauthorize />} />
+            <Route path='/manageproducts' element={<Products />} />
           </Route>
+          <Route path='/unauthorize' element={<Unauthorize />} />
         </Route>
 
         <Route path='/' element={<Login />} />
+        <Route path='/*' element={<MissingPage />} />
       </Routes>
     </Router>
   )

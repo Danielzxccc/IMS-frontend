@@ -1,0 +1,108 @@
+[
+    {
+        "title": "DASHBOARD",
+        "icon": "bi bi-speedometer2",
+        "path": "/dashboard",
+        "role" : [{
+            "role1" : "Admin",
+            "role2" : "Employee",
+            "role3" : "Reportstaff"
+        }]
+       
+    },
+    {
+        "title": "PRODUCTS",
+        "icon": "fa-solid fa-shirt",
+        "path": "/manageproducts",
+        "role" : [{
+            "role1" : "Admin",
+            "role2" : "Employee",
+            "role3" : "reportstaff"
+        }]
+        
+    },
+    {
+        "title": "PAID ORDERS",
+        "icon": "bi-laptop",
+        "path": "/paidorders",
+        "role" : [{
+            "role1" : "Admin",
+            "role2" : "Employee"
+            
+        }]
+    },
+    {
+        "title": "REPORTS",
+        "icon": "bi-flag",
+        "path": "/reports",
+        "role" : [{
+            "role1" : "Admin",
+            "role2" : "Employee",
+            "role3" : "Reportstaff"
+        }]
+    },
+    {
+        "title": "STORES",
+        "icon": "bi-shop",
+        "path": "/stores",
+        "role" : [{
+            "role1" : "Admin",
+            "role2" : "Employee",
+            "role3" : "Reportstaff"
+        }]
+    },
+    {
+        "title": "USERS",
+        "icon": "bi bi-people",
+        "path": "/report-bug",
+        "role" : [{
+            "role1" : "Admin"
+        }],
+        "childrens": [
+            {
+                "title": "Add Users",
+                "path": "/adduser",
+                "role" : [{
+                    "role1" : "Admin"
+                }]
+            },
+            {
+                "title": "Manage Users",
+                "path": "/manageuser",
+                "role" : [{
+                    "role1" : "Admin"
+                }]
+            }
+        ]
+    },
+    {
+        "title": "PROFILE",
+        "icon": "bi bi-person-circle",
+        "path": "/support",
+        "role" : [{
+            "role1" : "Admin",
+            "role2" : "Employee",
+            "role3" : "reportstaff"
+        }],
+        "childrens": [
+            {
+                "title": "View Profile",
+                "path": "/viewprofile",
+                "role" : [{
+                    "role1" : "Admin",
+                    "role2" : "Employee",
+                    "role3" : "Reportstaff"
+                }]
+            },
+            {
+                "title": "Logout",
+                "path": "/logout",
+                "role" : [{
+                    "role1" : "Admin",
+                    "role2" : "Employee",
+                    "role3" : "reportstaff"
+                }]
+            }
+        ]
+    }
+]

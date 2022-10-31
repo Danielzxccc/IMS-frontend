@@ -1,0 +1,112 @@
+.product-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.product-head h1 {
+  border-bottom: 4px solid #2690c6;
+  width: 240px;
+}
+.phead-1 {
+  flex: 1;
+}
+.phead-2 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.picons {
+  flex: 1;
+  height: 50px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.picons input[type='text'] {
+  border-radius: 5px;
+  height: 30px;
+  font-size: 16px;
+  margin-right: 20px;
+}
+.picons i {
+  font-size: 25px;
+  margin: 0 5px 0 5px;
+}
+.product-body {
+  margin: 50px 50px 0 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.product-item {
+  background-color: gray;
+  width: 400px;
+  height: 400px;
+  margin: 50px 50px 50px 50px;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.product-info {
+  width: 100%;
+  padding: 0 20px 0 20px;
+}
+.product-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 20px 0 20px;
+}
+.action-div1 {
+  flex: 1;
+}
+.action-div2 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.action-div3 {
+  display: flex;
+  flex: 1;
+  justify-content: end;
+  align-items: center;
+}
+.action-div3 i {
+  font-size: 22px;
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+}
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 50px;
+  top: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding-top: 50px;
+}
+.spinner svg {
+  width: 100px;
+  overflow: visible;
+}
+.spinner svg circle {
+  stroke: #2690c6;
+  transform-origin: 50px 50px;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
