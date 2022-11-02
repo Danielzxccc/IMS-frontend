@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import axios from 'axios'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 as uuidv4 } from 'uuid'
@@ -5,13 +6,7 @@ import React, { useState } from 'react'
 import '../../css/addmodalproducts.css'
 import { toast } from 'react-toastify'
 import { storage } from '../../firebase'
-const AddModalProducts = ({
-  setModalAdd,
-  setReload,
-  setLoading,
-  loading,
-  reload,
-}) => {
+const AddModalProducts = ({ setModalAdd, setReload, setLoading, reload }) => {
   const [products, setProducts] = useState({
     pname: '',
     pcategory: 'SHIRT',
@@ -57,68 +52,51 @@ const AddModalProducts = ({
   }
 
   const uploadImage = () => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        if (imageUpload === null) return
-        const imageRef = ref(storage, `images/${'product -' + uuidv4()}`)
-        const upload = await uploadBytes(imageRef, imageUpload)
-        const snapshot = upload.ref
-        const getUrl = await getDownloadURL(snapshot)
-        resolve(getUrl)
-      } catch (error) {
-        reject(error)
-      }
+    return new Promise((resolve) => {
+      if (imageUpload === null) return
+      setLoading(true)
+      const imageRef = ref(storage, `images/${imageUpload.name + uuidv4()}`)
+      uploadBytes(imageRef, imageUpload).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          resolve(url)
+        })
+      })
     })
   }
 
-  const postProduct = () => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        setLoading(true)
-        const upload = await uploadImage()
-        console.log(upload)
-        const response = await axios.post('/products/create', {
-          pname: products.pname,
-          pcategory: products.pcategory,
-          price: products.price,
-          pcolor: products.pcolor,
-          psize: products.psize,
-          stocks: products.stocks,
-          pdescript: products.pdescript,
-          pstatus: products.pstatus,
-          pimageurl: upload,
-          psales: 0,
-        })
-        console.log(response)
-        const data = response.data
-        if (data) {
-          // setModalAdd(false)
-          setReload(true)
-          resolve(data)
-        }
-      } catch (error) {
-        reject(error)
-      }
-    })
-  }
   // handle submit
   const submitProduct = async (e) => {
     e.preventDefault()
     try {
-      const postProductToDB = await postProduct()
-      setModalAdd(false)
-      setReload(!reload)
-      setLoading(false)
-      await toast.success('Added Successfully', {
-        position: 'top-center',
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'dark',
+      const upload = await uploadImage()
+      const response = await axios.post('/products/create', {
+        pname: products.pname,
+        pcategory: products.pcategory,
+        price: products.price,
+        pcolor: products.pcolor,
+        psize: products.psize,
+        stocks: products.stocks,
+        pdescript: products.pdescript,
+        pstatus: products.pstatus,
+        pimageurl: upload,
+        psales: 0,
       })
+      const data = response.data
+      if (data) {
+        setReload(!reload)
+        setModalAdd(false)
+        setLoading(false)
+        toast.success('Added Successfully', {
+          position: 'top-center',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+        })
+      }
     } catch (error) {
       console.log(error)
     }

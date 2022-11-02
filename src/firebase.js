@@ -1,12 +1,13 @@
+/* eslint-disable no-undef */
 import { initializeApp } from 'firebase/app'
 import { getStorage } from 'firebase/storage'
 const firebaseConfig = {
-  apiKey: 'AIzaSyCX-CoHCHMaDFP-u6BNh5kkvyZ5_QlKCSU',
-  authDomain: 'ims101.firebaseapp.com',
-  projectId: 'ims101',
-  storageBucket: 'ims101.appspot.com',
-  messagingSenderId: '17961048201',
-  appId: '1:17961048201:web:681639cfebfd476ccc8e58',
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 }
 const app = initializeApp(firebaseConfig)
 export const storage = getStorage(app)

@@ -8,16 +8,37 @@
   text-decoration: none;
 }
 
-.main-container {
-  width: (100% - 300px);
-  margin-top: 0;
-  margin-left: 300px;
-  padding: 15px;
-  transition: 0.3s;
+/* layout goes here */
+#dashboard {
+  color: black;
+  display: grid;
+  grid-template-areas:
+    'nav header header'
+    'nav content content'
+    'nav content content';
   height: 100vh;
+  width: 100%;
+  grid-template-rows: 80px 1fr;
+  grid-template-columns: 300px 1fr;
 }
-/* @media (max-width: 800px) {
-  * {
+nav {
+  grid-area: nav;
+}
+header {
+  grid-area: header;
+}
+main {
+  grid-area: content;
+  padding: 15px;
+}
+@media (max-width: 800px) {
+  nav {
     display: none;
   }
-} */
+  #dashboard {
+    grid-template-areas:
+      'header header'
+      'content content'
+      'content content';
+  }
+}

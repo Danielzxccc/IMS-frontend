@@ -4,13 +4,14 @@ import Sidebar from '../Sidebar'
 
 const MissingPage = () => {
   return (
-    <div className='wrapper'>
-      <div className='main-container'>
-        <h1>MISSING PAGE</h1>
-        <Link to='/dashboard'>Back</Link>
-      </div>
-      <Sidebar />
-    </div>
+    <section id='dashboard'>
+      <nav>
+        <Sidebar />
+      </nav>
+      <main>
+        <h1>missing page</h1>
+      </main>
+    </section>
   )
 }
 
