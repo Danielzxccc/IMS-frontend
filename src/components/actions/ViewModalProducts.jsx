@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react'
 import '../../css/viewmodalproducts.css'
-import testimg from '../../assets/Maya_Shirt.png'
 import { useState } from 'react'
 import axios from 'axios'
 const ViewModalProducts = ({ setModalView, viewID }) => {
@@ -42,7 +41,7 @@ const ViewModalProducts = ({ setModalView, viewID }) => {
       <div className='modal-content-product-view'>
         <div className='product-view-wrapper'>
           <div className='product-view-image'>
-            <img src={testimg} />
+            <img src={product[0].pimageurl} />
           </div>
           <div className='product-view-info'>
             <p>

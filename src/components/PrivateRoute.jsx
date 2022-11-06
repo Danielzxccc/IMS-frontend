@@ -1,3 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/prop-types */
 import { Navigate, Outlet } from 'react-router-dom'
 import { UserAuth } from '../context/authContext'
 

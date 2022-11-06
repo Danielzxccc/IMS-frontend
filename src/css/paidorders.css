@@ -1,0 +1,135 @@
+.po-header {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 100%;
+}
+.po-header h1 {
+  border-bottom: 4px solid #41b8d5;
+}
+.po-wrapper {
+  display: flex;
+  width: 100%;
+  padding: 0 150px 0 150px;
+  margin-top: 20px;
+}
+.po-first-row {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.po-wrapper label {
+  font-size: 18px;
+}
+.po-wrapper input[type='text'],
+input[type='number'],
+select {
+  font-size: 18px;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.po-first-row input[type='text'],
+input[type='number'] {
+  max-width: 65%;
+}
+.po-radio-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.po-radio-group label {
+  margin-right: 20px;
+}
+.po-radio-group input[type='radio'] {
+  margin-right: 5px;
+  accent-color: #41b8d5;
+  width: 20px;
+  height: 20px;
+}
+.po-wrapper .po-quantity {
+  max-width: 40%;
+}
+.po-second-row {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.po-second-row input[type='text'],
+select {
+  max-width: 80%;
+}
+.po-second-row select {
+  background: none;
+  border: 2px solid black;
+}
+.po-size-color input[type='text'] {
+  max-width: 60%;
+}
+.po-size-color {
+  display: flex;
+  flex-direction: column;
+}
+
+.po-size-color-wrapper {
+  display: flex;
+}
+
+.po-address {
+  padding: 0 100px 0 100px;
+  display: flex;
+  flex-direction: column;
+}
+.po-address input[type='text'],
+input[type='number'],
+select {
+  font-size: 18px;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.po-address h2 {
+  font-weight: 500;
+}
+.po-street {
+  max-width: 45%;
+}
+.po-address-row {
+  display: flex;
+}
+.po-address-row input[type='text'] {
+  margin-right: 50px;
+}
+.po-address-input-group {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.po-address-input-group input[type='text'] {
+  max-width: 100%;
+  width: 90%;
+}
+.po-footer {
+  padding: 0 150px 0 100px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 60px;
+}
+.po-footer button {
+  width: 150px;
+  border: none;
+  background-color: #41b8d5;
+  color: white;
+  font-weight: 500;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+@media (max-width: 800px) {
+  .po-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}

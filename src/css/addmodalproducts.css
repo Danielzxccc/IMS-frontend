@@ -78,6 +78,8 @@ select {
   font-size: 18px;
   accent-color: #41b8d5;
   border: none;
+  width: 20px;
+  height: 20px;
 }
 .product-variation {
   display: flex;

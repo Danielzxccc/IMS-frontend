@@ -82,7 +82,6 @@ const Login = () => {
           theme: 'dark',
         })
       } else {
-        await setErrMsg('Login Failed')
         toast.error('Login Failed', {
           position: 'top-center',
           autoClose: 5000,

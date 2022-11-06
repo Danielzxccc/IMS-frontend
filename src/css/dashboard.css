@@ -1,2 +1,84 @@
-
-
+.dashboard-header {
+  margin: 0 40px 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+}
+.dashboard-header h1 {
+  border-bottom: 4px solid #41b8d5;
+}
+.dashboard-header p {
+  font-size: 18px;
+}
+.dashboard-header div {
+  display: flex;
+  align-items: center;
+  max-height: 50%;
+  height: 50%;
+}
+.graph-wrapper {
+  display: flex;
+  height: 100vh;
+  margin-top: 20px;
+}
+.graph-divider {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.box-1 {
+  height: 250px;
+}
+.box-4 {
+  height: 500px;
+  padding: 10px 20px 20px 20px;
+}
+.box-2,
+.box-3 {
+  height: 100%;
+}
+.box-2 {
+  padding: 40px 40px 20px 40px;
+}
+.barchart {
+  background-color: #191919;
+  color: white;
+  border-radius: 20px;
+  width: 100%;
+  height: 400px;
+  display: flex;
+}
+.barchart-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.linechart {
+  background-color: #191919;
+  color: white;
+  border-radius: 20px;
+  width: 100%;
+  height: 300px;
+  display: flex;
+}
+.linechart-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+@media (max-width: 800px) {
+  .graph-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .box-1,
+  .box-4 {
+    height: 400px;
+  }
+  .box-2,
+  .box-3 {
+    height: 600px;
+  }
+}

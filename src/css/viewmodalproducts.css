@@ -35,10 +35,11 @@
 }
 .product-view-info p {
   margin-bottom: 10px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .product-view-info span {
   margin-left: 10px;
+  font-weight: 400;
 }
 .product-view-footer {
   display: flex;

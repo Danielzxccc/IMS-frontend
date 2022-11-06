@@ -5,7 +5,7 @@ import { AuthContextProvider } from './context/authContext'
 import './index.css'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://ims-backend-extn.vercel.app'
+axios.defaults.baseURL = 'http://localhost:3500'
 axios.defaults.withCredentials = true
 
 ReactDOM.createRoot(document.getElementById('root')).render(

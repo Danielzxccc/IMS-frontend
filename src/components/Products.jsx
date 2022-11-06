@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from './Sidebar'
 import '../css/products.css'
+import { storage } from '../firebase'
 import axios from 'axios'
 import DeleteModalProducts from './actions/DeleteModalProducts'
 import { ToastContainer, toast } from 'react-toastify'
 import AddModalProducts from './actions/AddModalProducts'
-import Spinner from './Spinner'
+import Spinner from './utils/Spinner'
 import ViewModalProducts from './actions/ViewModalProducts'
+import EditModalProducts from './actions/EditModalProducts'
+import { deleteObject, ref } from 'firebase/storage'
 
 const Products = () => {
   const [products, setProducts] = useState([])
   const [modalDelete, setModalDelete] = useState(false)
   const [modalAdd, setModalAdd] = useState(false)
   const [modalView, setModalView] = useState(false)
+  const [modalEdit, setModalEdit] = useState(false)
   const [query, setQuery] = useState('')
   const [viewID, setViewID] = useState(null)
   const [delID, setDelID] = useState(null)
+  const [editID, setEditID] = useState(null)
   const [productName, setProductName] = useState('')
+  const [imageName, setImageName] = useState('')
   const [reload, setReload] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -36,10 +42,11 @@ const Products = () => {
     }
   }, [reload])
   // modal functions
-  const openDeleteModal = (id, name) => {
+  const openDeleteModal = (id, name, image) => {
     setModalDelete(true)
     setDelID(id)
     setProductName(name)
+    setImageName(image)
   }
 
   const closeDeleteModal = () => {
@@ -51,8 +58,21 @@ const Products = () => {
     setViewID(id)
   }
 
+  const openEditModal = (id) => {
+    setModalEdit(true)
+    setEditID(id)
+  }
+
+  const closeEditModal = () => {
+    setModalEdit(false)
+  }
+
   const submitDelete = async (id) => {
     try {
+      const desertRef = ref(storage, imageName)
+      const deleteImage = await deleteObject(desertRef)
+      console.log(deleteImage)
+
       const response = await axios.delete(`/products/delete/${id}`)
       if (response) {
         setProducts(products.filter((item) => item.id !== id))
@@ -130,10 +150,15 @@ const Products = () => {
                     VIEW MORE
                   </div>
                   <div className='action-div3'>
-                    <i className='bi bi-pencil-square'></i>
+                    <i
+                      className='bi bi-pencil-square'
+                      onClick={() => openEditModal(item.id)}
+                    ></i>
                     <i
                       className='bi bi-trash3-fill'
-                      onClick={() => openDeleteModal(item.id, item.pname)}
+                      onClick={() =>
+                        openDeleteModal(item.id, item.pname, item.pimagename)
+                      }
                     ></i>
                   </div>
                 </div>
@@ -141,6 +166,16 @@ const Products = () => {
             ))}
         </div>
       </main>
+      {/* MODALS  */}
+      {modalEdit && (
+        <EditModalProducts
+          closeEditModal={closeEditModal}
+          editID={editID}
+          setLoading={setLoading}
+          setReload={setReload}
+          reload={reload}
+        />
+      )}
       {modalView && (
         <ViewModalProducts setModalView={setModalView} viewID={viewID} />
       )}

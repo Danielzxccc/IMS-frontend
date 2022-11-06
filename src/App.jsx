@@ -9,6 +9,7 @@ import Login from './components/Login'
 import PersistLogin from './components/PersistLogin'
 import MissingPage from './components/pages/MissingPage'
 import Products from './components/Products'
+import PaidOrders from './components/PaidOrders'
 
 const ROLES = {
   Employee: 'Employee',
@@ -31,6 +32,7 @@ function App() {
           >
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/manageproducts' element={<Products />} />
+            <Route path='/paidorders' element={<PaidOrders />} />
           </Route>
           <Route path='/unauthorize' element={<Unauthorize />} />
         </Route>

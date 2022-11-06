@@ -16,7 +16,7 @@
     'nav header header'
     'nav content content'
     'nav content content';
-  height: 100vh;
+  height: 100%;
   width: 100%;
   grid-template-rows: 80px 1fr;
   grid-template-columns: 300px 1fr;
