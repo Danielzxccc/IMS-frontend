@@ -4,6 +4,7 @@ import Sidebar from './Sidebar'
 import '../css/dashboard.css'
 import BarChart from './charts/BarChart'
 import LineChart from './charts/LineChart'
+import BestSelling from './charts/BestSelling'
 
 const Dashboard = () => {
   const { userData } = UserAuth()
@@ -38,7 +39,9 @@ const Dashboard = () => {
             </div>
           </div>
           <div className='graph-divider'>
-            <div className='box-3'>test</div>
+            <div className='box-3'>
+              <BestSelling />
+            </div>
             <div className='box-4'>
               <div className='linechart-wrapper'>
                 <LineChart />

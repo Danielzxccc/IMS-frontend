@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Sidebar from './Sidebar'
 import '../css/products.css'
 import { storage } from '../firebase'
@@ -10,6 +10,7 @@ import Spinner from './utils/Spinner'
 import ViewModalProducts from './actions/ViewModalProducts'
 import EditModalProducts from './actions/EditModalProducts'
 import { deleteObject, ref } from 'firebase/storage'
+import ProductItems from './ProductItems'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -26,21 +27,6 @@ const Products = () => {
   const [reload, setReload] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get('/products/get')
-      const products = response.data
-      if (products) setProducts(products)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    return () => {
-      fetchProducts()
-    }
-  }, [reload])
   // modal functions
   const openDeleteModal = (id, name, image) => {
     setModalDelete(true)
@@ -132,38 +118,15 @@ const Products = () => {
       </header>
       <main>
         <div className='product-body'>
-          {products
-            .filter((asd) => asd.pname.toLowerCase().includes(query))
-            .map((item, index) => (
-              <div className='product-item' key={index}>
-                <img src={item.pimageurl} alt='' width={300} height={300} />
-                <div className='product-info'>
-                  <p>Product Name: {item.pname}</p>
-                  <p>Category: {item.pcategory}</p>
-                </div>
-                <div className='product-actions'>
-                  <div className='action-div1'></div>
-                  <div
-                    className='action-div2'
-                    onClick={() => openViewModal(item.id)}
-                  >
-                    VIEW MORE
-                  </div>
-                  <div className='action-div3'>
-                    <i
-                      className='bi bi-pencil-square'
-                      onClick={() => openEditModal(item.id)}
-                    ></i>
-                    <i
-                      className='bi bi-trash3-fill'
-                      onClick={() =>
-                        openDeleteModal(item.id, item.pname, item.pimagename)
-                      }
-                    ></i>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <ProductItems
+            products={products}
+            setProducts={setProducts}
+            query={query}
+            openViewModal={openViewModal}
+            openEditModal={openEditModal}
+            openDeleteModal={openDeleteModal}
+            reload={reload}
+          />
         </div>
       </main>
       {/* MODALS  */}

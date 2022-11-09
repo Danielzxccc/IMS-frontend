@@ -42,6 +42,37 @@
         }]
     },
     {
+        "title": "ARCHIVES",
+        "icon": "bi bi-file-zip",
+        "path": "/",
+        "role" : [{
+            "role1" : "Admin"
+        }],
+        "childrens": [
+            {
+                "title": "Products",
+                "path": "/archiveproducts",
+                "role" : [{
+                    "role1" : "Admin"
+                }]
+            },
+            {
+                "title": "Paid Orders",
+                "path": "/archiveorders",
+                "role" : [{
+                    "role1" : "Admin"
+                }]
+            },
+            {
+                "title": "Users",
+                "path": "/archiveusers",
+                "role" : [{
+                    "role1" : "Admin"
+                }]
+            }
+        ]
+    },
+    {
         "title": "STORES",
         "icon": "bi-shop",
         "path": "/stores",

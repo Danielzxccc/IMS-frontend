@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,8 +10,8 @@ import {
   Legend,
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
-import { useState } from 'react'
 import axios from 'axios'
+import { useQuery } from '@tanstack/react-query'
 
 ChartJS.register(
   CategoryScale,
@@ -22,24 +22,19 @@ ChartJS.register(
   Tooltip,
   Legend
 )
+ChartJS.defaults.font.size = 16
 const LineChart = () => {
-  const [lineData, setLineData] = useState([])
-  const fetchReportData = async () => {
-    try {
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['ReportData'],
+    queryFn: async () => {
       const response = await axios.get('/paidorders/reportdata')
-      const reports = response.data
-      if (reports) {
-        setLineData(reports[0])
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  useEffect(() => {
-    return () => {
-      fetchReportData()
-    }
-  }, [])
+      return response.data[0]
+    },
+  })
+
+  if (isLoading) return 'Loading...'
+
+  if (error) return 'An error has occurred: ' + error.message
 
   const options = {
     maintainAspectRatio: false,
@@ -58,11 +53,11 @@ const LineChart = () => {
     },
   }
   const linedata = {
-    labels: Object.keys(lineData),
+    labels: Object.keys(data),
     datasets: [
       {
         label: 'SALES',
-        data: Object.values(lineData),
+        data: Object.values(data),
         fill: false,
         borderColor: '#41B8D5',
         tension: 0.3,

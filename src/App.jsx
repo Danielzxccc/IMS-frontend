@@ -10,6 +10,8 @@ import PersistLogin from './components/PersistLogin'
 import MissingPage from './components/pages/MissingPage'
 import Products from './components/Products'
 import PaidOrders from './components/PaidOrders'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import Reports from './components/Reports'
 
 const ROLES = {
   Employee: 'Employee',
@@ -17,30 +19,39 @@ const ROLES = {
   Admin: 'Admin',
 }
 
+const queryClient = new QueryClient()
+
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* protected routes */}
-        <Route element={<PersistLogin />}>
-          <Route
-            element={
-              <PrivateRoute
-                allowedRoles={[ROLES.Employee, ROLES.ReportStaff, ROLES.Admin]}
-              />
-            }
-          >
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/manageproducts' element={<Products />} />
-            <Route path='/paidorders' element={<PaidOrders />} />
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Routes>
+          {/* protected routes */}
+          <Route element={<PersistLogin />}>
+            <Route
+              element={
+                <PrivateRoute
+                  allowedRoles={[
+                    ROLES.Employee,
+                    ROLES.ReportStaff,
+                    ROLES.Admin,
+                  ]}
+                />
+              }
+            >
+              <Route path='/dashboard' element={<Dashboard />} />
+              <Route path='/manageproducts' element={<Products />} />
+              <Route path='/reports' element={<Reports />} />
+              <Route path='/paidorders' element={<PaidOrders />} />
+            </Route>
+            <Route path='/unauthorize' element={<Unauthorize />} />
           </Route>
-          <Route path='/unauthorize' element={<Unauthorize />} />
-        </Route>
 
-        <Route path='/' element={<Login />} />
-        <Route path='/*' element={<MissingPage />} />
-      </Routes>
-    </Router>
+          <Route path='/' element={<Login />} />
+          <Route path='/*' element={<MissingPage />} />
+        </Routes>
+      </Router>
+    </QueryClientProvider>
   )
 }
 

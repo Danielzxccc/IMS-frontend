@@ -35,13 +35,15 @@ const BarChart = () => {
 
   //colors
   const chartColors = {
-    red: 'red',
+    // red: '#F1AF24',
+    // orange: '#E05003',
+    yellow: '#F1AF24',
     blue: '#41B8D5',
   }
   const updateColor = () => {
     for (let i = 0; i < chart.data.datasets[0].data.length; i++) {
       if (chart.data.datasets[0].data[i] <= 10) {
-        chart.data.datasets[0].backgroundColor[i] = chartColors.red
+        chart.data.datasets[0].backgroundColor[i] = chartColors.yellow
       } else {
         chart.data.datasets[0].backgroundColor[i] = chartColors.blue
       }
