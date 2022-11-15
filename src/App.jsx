@@ -12,6 +12,7 @@ import Products from './components/Products'
 import PaidOrders from './components/PaidOrders'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Reports from './components/Reports'
+import ProductArchive from './components/archives/ProductArchive'
 
 const ROLES = {
   Employee: 'Employee',
@@ -41,6 +42,7 @@ function App() {
             >
               <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/manageproducts' element={<Products />} />
+              <Route path='/archiveproducts' element={<ProductArchive />} />
               <Route path='/reports' element={<Reports />} />
               <Route path='/paidorders' element={<PaidOrders />} />
             </Route>

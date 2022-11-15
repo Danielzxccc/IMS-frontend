@@ -4,9 +4,10 @@ import '../css/paidorders.css'
 import axios from 'axios'
 import { useRef } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const PaidOrders = () => {
-  const [cod, setCOD] = useState(true)
+  const [pickup, setPickup] = useState(true)
   const [products, setProducts] = useState([])
   const [size, setSize] = useState('')
   const [color, setColor] = useState('')
@@ -22,14 +23,16 @@ const PaidOrders = () => {
     pmethod: '',
     tprice: null,
     quantity: 1,
-    street: null,
-    barangay: null,
-    city: null,
-    region: null,
-    country: null,
+    street: '',
+    barangay: '',
+    city: '',
+    region: '',
+    country: '',
     postal: null,
     contact: 0,
   })
+
+  const navigate = useNavigate()
 
   const fetchProducts = async () => {
     try {
@@ -76,6 +79,42 @@ const PaidOrders = () => {
     }
   }, [paidOrders.quantity])
 
+  //set default addresses
+  useEffect(() => {
+    if (pickup === true)
+      if (paidOrders.st_name === 'HM') {
+        setPaidOrders({
+          ...paidOrders,
+          street: '1049 Unit 3C',
+          barangay: 'Arrellano Ave',
+          city: 'Manila',
+          region: 'NCR',
+          country: 'Philippines',
+          postal: '1108',
+        })
+      } else if (paidOrders.st_name === 'DBTK') {
+        setPaidOrders({
+          ...paidOrders,
+          street: '38 Shorthorn',
+          barangay: 'Project 8',
+          city: 'Quezon City',
+          region: 'NCR',
+          country: 'Philippines',
+          postal: '1106',
+        })
+      } else {
+        setPaidOrders({
+          ...paidOrders,
+          street: '',
+          barangay: '',
+          city: '',
+          region: '',
+          country: '',
+          postal: '',
+        })
+      }
+  }, [paidOrders.st_name])
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setPaidOrders((prev) => {
@@ -113,7 +152,9 @@ const PaidOrders = () => {
           progress: undefined,
           theme: 'dark',
         })
-      console.log(response)
+      setTimeout(() => {
+        navigate('/reports')
+      }, 2000)
     } catch (error) {
       toast.error('Error Occured', {
         position: 'top-center',
@@ -125,7 +166,6 @@ const PaidOrders = () => {
         progress: undefined,
         theme: 'dark',
       })
-      console.log(error)
     }
   }
 
@@ -156,7 +196,7 @@ const PaidOrders = () => {
                   type='radio'
                   name='pmethod'
                   value='GCASH'
-                  onClick={() => setCOD(true)}
+                  onClick={() => setPickup(true)}
                   onChange={handleChange}
                   required
                 />
@@ -164,7 +204,7 @@ const PaidOrders = () => {
                 <input
                   type='radio'
                   name='pmethod'
-                  onClick={() => setCOD(true)}
+                  onClick={() => setPickup(true)}
                   onChange={handleChange}
                   value='COD'
                   required
@@ -173,7 +213,7 @@ const PaidOrders = () => {
                 <input
                   type='radio'
                   name='pmethod'
-                  onClick={() => setCOD(false)}
+                  onClick={() => setPickup(false)}
                   onChange={handleChange}
                   value='PICKUP'
                   required
@@ -182,7 +222,7 @@ const PaidOrders = () => {
                 <input
                   type='radio'
                   name='pmethod'
-                  onClick={() => setCOD(true)}
+                  onClick={() => setPickup(true)}
                   value='BANK'
                   onChange={handleChange}
                   required
@@ -238,7 +278,7 @@ const PaidOrders = () => {
               </div>
               <label>CATEGORY</label>
               <input type='text' required readOnly defaultValue={category} />
-              {cod && (
+              {pickup && (
                 <>
                   <label>DELIVERY METHOD</label>
                   <select name='dmethod' onChange={handleChange}>
@@ -248,44 +288,76 @@ const PaidOrders = () => {
                   </select>
                 </>
               )}
-              <label>STORE</label>
-              <select name='st_name' onChange={handleChange}>
-                <option value=''>SM Fairview</option>
-              </select>
+              {pickup && (
+                <>
+                  <label>STORE</label>
+                  <select name='st_name' onChange={handleChange}>
+                    <option value=''>Select an Address</option>
+                    <option value='HM'>HIGH MINDS CLOTHING</option>
+                    <option value='DBTK'>DBTK</option>
+                  </select>{' '}
+                </>
+              )}
             </div>
           </div>
-          {cod && (
+          {pickup && (
             <div className='po-address'>
               <h2>ADDRESS</h2>
               <label>STREET</label>
               <input
                 type='text'
                 name='street'
+                defaultValue={paidOrders.street}
                 onChange={handleChange}
                 className='po-street'
               />
               <div className='po-address-row'>
                 <div className='po-address-input-group'>
                   <label>BARANGAY</label>
-                  <input type='text' name='barangay' onChange={handleChange} />
+                  <input
+                    type='text'
+                    name='barangay'
+                    defaultValue={paidOrders.barangay}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className='po-address-input-group'>
                   <label>CITY</label>
-                  <input type='text' name='city' onChange={handleChange} />
+                  <input
+                    type='text'
+                    name='city'
+                    defaultValue={paidOrders.city}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className='po-address-input-group'>
                   <label>REGION</label>
-                  <input type='text' name='region' onChange={handleChange} />
+                  <input
+                    type='text'
+                    name='region'
+                    defaultValue={paidOrders.region}
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
               <div className='po-address-row'>
                 <div className='po-address-input-group'>
                   <label>COUNTRY</label>
-                  <input type='text' name='country' onChange={handleChange} />
+                  <input
+                    type='text'
+                    name='country'
+                    defaultValue={paidOrders.country}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className='po-address-input-group'>
                   <label>POSTAL CODE</label>
-                  <input type='text' name='postal' onChange={handleChange} />
+                  <input
+                    type='text'
+                    name='postal'
+                    defaultValue={paidOrders.postal}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className='po-address-input-group'>
                   <label>CONTACT NO.</label>

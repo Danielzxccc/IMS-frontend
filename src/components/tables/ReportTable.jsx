@@ -1,14 +1,14 @@
+/* eslint-disable react/prop-types */
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 import { format } from 'date-fns'
 
-const ReportTable = () => {
+const ReportTable = ({ openModal }) => {
   const { isLoading, error, data } = useQuery({
     queryKey: ['tableData'],
     queryFn: async () => {
       const response = await axios.get('/paidorders/get')
-      console.log(response.data)
       return response.data
     },
   })
@@ -41,7 +41,10 @@ const ReportTable = () => {
             {item.pname} {item.pcolor} {item.psize}
           </td>
           <td>
-            <i className='fa-solid fa-eye'></i>
+            <i
+              className='fa-solid fa-eye'
+              onClick={() => openModal(item.id)}
+            ></i>
           </td>
         </tr>
       ))}

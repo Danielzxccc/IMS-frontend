@@ -1,0 +1,61 @@
+.modal-paidorder-view {
+  display: flex; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 80px;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  padding-top: 50px;
+}
+.modal-content-paidorder-view {
+  background-color: #d9d9d9;
+  margin: 15% auto 15% auto;
+  width: 700px;
+  height: 480px;
+  padding: 20px;
+  border-radius: 20px;
+}
+.modal-paidorder-header {
+  display: flex;
+  justify-content: center;
+  height: 70px;
+}
+.modal-content-paidorder-view span {
+  font-weight: 500;
+  margin-left: 10px;
+}
+.first-row-modal h4:nth-child(1) {
+  margin-bottom: 40px;
+}
+.modal-paidorder-row {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.modal-paidorder-row div {
+  margin: 0 5px;
+  flex: 1;
+}
+.modal-paidorder-row h4 {
+  margin-bottom: 10px;
+}
+.modal-paidorder-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-paidorder-footer button {
+  width: 130px;
+  border: none;
+  background-color: #41b8d5;
+  color: white;
+  font-weight: 500;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}

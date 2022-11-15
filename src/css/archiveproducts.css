@@ -1,0 +1,53 @@
+.archive-header {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 100%;
+}
+.archive-header h1 {
+  border-bottom: 4px solid #41b8d5;
+}
+.select-all {
+  display: flex;
+  align-items: center;
+}
+.select-all p {
+  text-decoration: underline;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.select-all input[type='checkbox'],
+.archive-table input[type='checkbox'] {
+  font-size: 20px;
+  height: 40px;
+  width: 20px;
+  accent-color: #41b8d5;
+}
+.archive-table i:hover {
+  color: #41b8d5;
+  cursor: pointer;
+}
+.archive-table span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+table,
+td,
+th {
+  border: 1px solid black;
+  padding: 5px;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  height: 40px;
+  color: #fff;
+  background-color: #191919;
+}

@@ -38,7 +38,6 @@ const LineChart = () => {
 
   const options = {
     maintainAspectRatio: false,
-    responsive: true,
     color: '#FFFFFF',
     plugins: {
       legend: {

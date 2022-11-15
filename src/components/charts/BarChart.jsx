@@ -72,7 +72,6 @@ const BarChart = () => {
         borderWidth: 1,
       },
     },
-    responsive: true,
     plugins: {
       legend: {
         position: 'right',

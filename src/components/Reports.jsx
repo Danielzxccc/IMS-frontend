@@ -3,8 +3,22 @@ import Sidebar from './Sidebar'
 import '../css/reports.css'
 import LineChart from './charts/LineChart'
 import ReportTable from './tables/ReportTable'
+import { useState } from 'react'
+import ViewPaidOrder from './actions/ViewPaidOrder'
 
 const Reports = () => {
+  const [viewModal, setViewModal] = useState(false)
+  const [id, setID] = useState(null)
+
+  const openModal = (id) => {
+    setViewModal(true)
+    setID(id)
+  }
+
+  const closeModal = () => {
+    setViewModal(false)
+  }
+
   return (
     <section id='dashboard'>
       <nav>
@@ -35,11 +49,12 @@ const Reports = () => {
               </tr>
             </thead>
             <tbody>
-              <ReportTable />
+              <ReportTable openModal={openModal} />
             </tbody>
           </table>
         </div>
       </main>
+      {viewModal && <ViewPaidOrder closeModal={closeModal} id={id} />}
     </section>
   )
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Sidebar from './Sidebar'
 import '../css/products.css'
-import { storage } from '../firebase'
 import axios from 'axios'
 import DeleteModalProducts from './actions/DeleteModalProducts'
 import { ToastContainer, toast } from 'react-toastify'
@@ -9,7 +8,6 @@ import AddModalProducts from './actions/AddModalProducts'
 import Spinner from './utils/Spinner'
 import ViewModalProducts from './actions/ViewModalProducts'
 import EditModalProducts from './actions/EditModalProducts'
-import { deleteObject, ref } from 'firebase/storage'
 import ProductItems from './ProductItems'
 
 const Products = () => {
@@ -55,9 +53,9 @@ const Products = () => {
 
   const submitDelete = async (id) => {
     try {
-      const desertRef = ref(storage, imageName)
-      const deleteImage = await deleteObject(desertRef)
-      console.log(deleteImage)
+      // const desertRef = ref(storage, imageName)
+      // const deleteImage = await deleteObject(desertRef)
+      // console.log(deleteImage)
 
       const response = await axios.delete(`/products/delete/${id}`)
       if (response) {
@@ -96,6 +94,7 @@ const Products = () => {
         progress: undefined,
         theme: 'dark',
       })
+      console.log(error)
     }
   }
   return (

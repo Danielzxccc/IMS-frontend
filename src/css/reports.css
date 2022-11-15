@@ -30,23 +30,3 @@
   color: #41b8d5;
   cursor: pointer;
 }
-table,
-td,
-th {
-  border: 1px solid black;
-  padding: 5px;
-  text-align: center;
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th {
-  height: 40px;
-  color: #fff;
-  background-color: #191919;
-}
