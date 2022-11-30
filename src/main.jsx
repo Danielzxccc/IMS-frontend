@@ -4,6 +4,7 @@ import App from './App'
 import { AuthContextProvider } from './context/authContext'
 import './index.css'
 import axios from 'axios'
+import 'react-toastify/dist/ReactToastify.css'
 
 axios.defaults.baseURL = 'http://localhost:3500'
 axios.defaults.withCredentials = true

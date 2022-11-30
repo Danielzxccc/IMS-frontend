@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 100%;
+}
+.header h1 {
+  border-bottom: 4px solid #41b8d5;
+}

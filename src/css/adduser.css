@@ -1,0 +1,61 @@
+.add-user-body {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.add-user-body input[type='text'] {
+  font-size: 18px;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.add-user-body input[type='radio'] {
+  margin-right: 5px;
+  accent-color: #41b8d5;
+  width: 30px;
+  height: 20px;
+}
+.add-user-body div:first-child,
+.add-user-body div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 20px;
+}
+
+.d-flex {
+  display: flex;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+.d-flex label {
+  margin-left: 10px;
+}
+.input-group {
+  display: flex;
+  margin: 0;
+}
+.short-input {
+  max-width: 50%;
+}
+.large-input {
+  max-width: 100%;
+  width: 100%;
+}
+.user-lower-form {
+  width: 100%;
+  max-width: 32%;
+}
+.user-lower-form input[type='text'],
+.user-lower-form input[type='email'],
+.user-lower-form input[type='password'] {
+  font-size: 18px;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.add-user-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}

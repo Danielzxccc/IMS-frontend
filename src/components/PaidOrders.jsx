@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useRef } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import Header from './header/Header'
 
 const PaidOrders = () => {
   const [pickup, setPickup] = useState(true)
@@ -21,14 +22,14 @@ const PaidOrders = () => {
     st_name: '',
     dmethod: '',
     pmethod: '',
-    tprice: null,
+    tprice: 0,
     quantity: 1,
     street: '',
     barangay: '',
     city: '',
     region: '',
     country: '',
-    postal: null,
+    postal: 0,
     contact: 0,
   })
 
@@ -110,7 +111,7 @@ const PaidOrders = () => {
           city: '',
           region: '',
           country: '',
-          postal: '',
+          postal: '0',
         })
       }
   }, [paidOrders.st_name])
@@ -156,6 +157,7 @@ const PaidOrders = () => {
         navigate('/reports')
       }, 2000)
     } catch (error) {
+      console.log(error)
       toast.error('Error Occured', {
         position: 'top-center',
         autoClose: 1000,
@@ -175,9 +177,7 @@ const PaidOrders = () => {
         <Sidebar />
       </nav>
       <header>
-        <div className='po-header'>
-          <h1>PAID ORDERS</h1>
-        </div>
+        <Header title={'PAID ORDERS'} />
       </header>
       <main>
         <form onSubmit={submitPaidOrder}>
@@ -218,7 +218,7 @@ const PaidOrders = () => {
                   value='PICKUP'
                   required
                 />
-                <label>PICK UP</label>
+                <label>DIRECT</label>
                 <input
                   type='radio'
                   name='pmethod'

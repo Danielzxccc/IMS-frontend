@@ -57,13 +57,6 @@
                 }]
             },
             {
-                "title": "Paid Orders",
-                "path": "/archiveorders",
-                "role" : [{
-                    "role1" : "Admin"
-                }]
-            },
-            {
                 "title": "Users",
                 "path": "/archiveusers",
                 "role" : [{

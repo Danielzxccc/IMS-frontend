@@ -46,7 +46,7 @@
   flex-direction: column;
 }
 .login-form input[type='text'],
-input[type='password'] {
+.login-form input[type='password'] {
   margin-top: 10px;
   height: 30px;
   color: white;
@@ -69,3 +69,6 @@ input[type='password'] {
   display: flex;
   justify-content: center;
 }
+/* .login-form label {
+  text-align: center;
+} */

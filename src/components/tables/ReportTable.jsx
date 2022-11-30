@@ -4,7 +4,7 @@ import axios from 'axios'
 import React from 'react'
 import { format } from 'date-fns'
 
-const ReportTable = ({ openModal }) => {
+const ReportTable = ({ query, openModal }) => {
   const { isLoading, error, data } = useQuery({
     queryKey: ['tableData'],
     queryFn: async () => {
@@ -26,28 +26,34 @@ const ReportTable = ({ openModal }) => {
         <td colSpan={6}>loading...</td>
       </tr>
     )
-
+  console.log(data)
   return (
     <>
-      {data.map((item, index) => (
-        <tr key={index}>
-          <td>{format(new Date(item.date_added), 'P')}</td>
-          <td>{item.id}</td>
-          <td>{item.cname}</td>
-          <td>
-            {item.street} {item.barangay} {item.city} {item.region}
-          </td>
-          <td>
-            {item.pname} {item.pcolor} {item.psize}
-          </td>
-          <td>
-            <i
-              className='fa-solid fa-eye'
-              onClick={() => openModal(item.id)}
-            ></i>
-          </td>
-        </tr>
-      ))}
+      {data
+        .filter((item) => {
+          return Object.keys(item).some((key) =>
+            item[key].toString().toLowerCase().includes(query.toLowerCase())
+          )
+        })
+        .map((item, index) => (
+          <tr key={index}>
+            <td>{format(new Date(item.date_added), 'P')}</td>
+            <td>{item.id}</td>
+            <td>{item.cname}</td>
+            <td>
+              {item.street} {item.barangay} {item.city} {item.region}
+            </td>
+            <td>
+              {item.pname} {item.pcolor} {item.psize}
+            </td>
+            <td>
+              <i
+                className='fa-solid fa-eye'
+                onClick={() => openModal(item.id)}
+              ></i>
+            </td>
+          </tr>
+        ))}
       {/* <tr>
         <td></td>
       </tr> */}

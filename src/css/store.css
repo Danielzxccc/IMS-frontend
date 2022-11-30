@@ -1,0 +1,15 @@
+.store-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.store-card {
+  text-align: left;
+  margin: 0 20px;
+}
+.store-card a:visited {
+  color: black;
+}
+.store-card a {
+  text-decoration: underline;
+}

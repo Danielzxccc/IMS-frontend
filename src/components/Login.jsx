@@ -4,7 +4,6 @@ import '../css/login.css'
 import logo from '../assets/logo1.png'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom'
 import { UserAuth } from '../context/authContext'
 

@@ -5,6 +5,7 @@ import '../css/dashboard.css'
 import BarChart from './charts/BarChart'
 import LineChart from './charts/LineChart'
 import BestSelling from './charts/BestSelling'
+import Earnings from './charts/Earnings'
 
 const Dashboard = () => {
   const { userData } = UserAuth()
@@ -12,7 +13,6 @@ const Dashboard = () => {
     <section id='dashboard'>
       <nav>
         <Sidebar />
-        test
       </nav>
 
       {/* HEADER */}
@@ -31,7 +31,11 @@ const Dashboard = () => {
       <main>
         <div className='graph-wrapper'>
           <div className='graph-divider'>
-            <div className='box-1'>test</div>
+            <div className='box-1'>
+              <div className='reports-wrapper'>
+                <Earnings />
+              </div>
+            </div>
             <div className='box-2'>
               <div className='barchart-wrapper'>
                 <BarChart />

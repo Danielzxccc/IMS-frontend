@@ -4,6 +4,7 @@ import '../../css/archiveproducts.css'
 import { toast, ToastContainer } from 'react-toastify'
 import { useState } from 'react'
 import Sidebar from '../Sidebar'
+import Header from '../header/Header'
 import ProductArchiveTable from '../tables/ProductArchiveTable'
 import UnarchiveModalProduct from '../actions/UnarchiveModalProduct'
 import ViewModalProducts from '../actions/ViewModalProducts'
@@ -109,9 +110,7 @@ const ProductArchive = () => {
         <Sidebar />
       </nav>
       <header>
-        <div className='archive-header'>
-          <h1>ARCHIVED PRODUCTS</h1>
-        </div>
+        <Header title={'ARCHIVED PRODUCTS'} />
       </header>
       <main>
         <div className='archive-body'>

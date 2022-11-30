@@ -1,0 +1,25 @@
+.search-users {
+  display: flex;
+  justify-content: flex-end;
+}
+.user-search-inputs input[type='text'] {
+  font-size: 18px;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.user-search-inputs span i {
+  font-size: 20px;
+}
+.users-table {
+  margin-top: 100px;
+}
+
+.users-table td span i {
+  font-size: 20px;
+}
+.users-table td span i:hover {
+  color: #41b8d5;
+  cursor: pointer;
+}
