@@ -6,7 +6,7 @@
         "role" : [{
             "role1" : "Admin",
             "role2" : "Employee",
-            "role3" : "Reportstaff"
+            "role3" : "ReportStaff"
         }]
        
     },
@@ -17,7 +17,7 @@
         "role" : [{
             "role1" : "Admin",
             "role2" : "Employee",
-            "role3" : "reportstaff"
+            "role3" : "ReportStaff"
         }]
         
     },
@@ -33,13 +33,27 @@
     },
     {
         "title": "REPORTS",
-        "icon": "bi-flag",
-        "path": "/reports",
+        "icon": "bi bi-flag",
+        "path": "/",
         "role" : [{
-            "role1" : "Admin",
-            "role2" : "Employee",
-            "role3" : "Reportstaff"
-        }]
+            "role1" : "Admin"
+        }],
+        "childrens": [
+            {
+                "title": "Product Reports",
+                "path": "/productreports",
+                "role" : [{
+                    "role1" : "Admin"
+                }]
+            },
+            {
+                "title": "Order Reports",
+                "path": "/salesreports",
+                "role" : [{
+                    "role1" : "Admin"
+                }]
+            }
+        ]
     },
     {
         "title": "ARCHIVES",
@@ -72,7 +86,7 @@
         "role" : [{
             "role1" : "Admin",
             "role2" : "Employee",
-            "role3" : "Reportstaff"
+            "role3" : "ReportStaff"
         }]
     },
     {
@@ -106,7 +120,7 @@
         "role" : [{
             "role1" : "Admin",
             "role2" : "Employee",
-            "role3" : "reportstaff"
+            "role3" : "ReportStaff"
         }],
         "childrens": [
             {
@@ -115,7 +129,7 @@
                 "role" : [{
                     "role1" : "Admin",
                     "role2" : "Employee",
-                    "role3" : "Reportstaff"
+                    "role3" : "ReportStaff"
                 }]
             },
             {
@@ -124,7 +138,7 @@
                 "role" : [{
                     "role1" : "Admin",
                     "role2" : "Employee",
-                    "role3" : "reportstaff"
+                    "role3" : "ReportStaff"
                 }]
             }
         ]

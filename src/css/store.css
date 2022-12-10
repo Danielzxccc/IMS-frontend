@@ -4,12 +4,21 @@
   margin-top: 10px;
 }
 .store-card {
-  text-align: left;
+  text-align: center;
   margin: 0 20px;
+}
+.store-card iframe {
+  margin-bottom: 10px;
 }
 .store-card a:visited {
   color: black;
 }
 .store-card a {
   text-decoration: underline;
+}
+.red-icon {
+  color: #e33924;
+}
+.yellow-icon {
+  color: #fcd24f;
 }

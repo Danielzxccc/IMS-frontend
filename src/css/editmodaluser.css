@@ -1,0 +1,41 @@
+.modal-edit-user {
+  display: flex; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 80px;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  padding-top: 50px;
+}
+.modal-content-edit-user {
+  background-color: #d9d9d9;
+  margin: 15% auto 15% auto;
+  border: 1px solid #888;
+  width: 600px;
+  height: 100%;
+  padding: 20px;
+  border-radius: 20px;
+}
+.modal-content-edit-user h3 {
+  text-align: center;
+}
+.check {
+  height: 20px;
+  width: 30px;
+  accent-color: #41b8d5;
+}
+.input-long {
+  width: 100%;
+  max-width: 70%;
+}
+.exit-edit {
+  display: flex;
+  justify-content: flex-end;
+}
+.exit-edit span {
+  cursor: pointer;
+}

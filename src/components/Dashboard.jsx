@@ -1,14 +1,28 @@
+/* eslint-disable react/prop-types */
 import { UserAuth } from '../context/authContext'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Sidebar from './Sidebar'
 import '../css/dashboard.css'
 import BarChart from './charts/BarChart'
 import LineChart from './charts/LineChart'
 import BestSelling from './charts/BestSelling'
 import Earnings from './charts/Earnings'
+import axios from 'axios'
+import { fetchStocks } from './utils/notifEmmitter'
 
-const Dashboard = () => {
+const Dashboard = ({ dispatch }) => {
+  const effectRan = useRef(false)
   const { userData } = UserAuth()
+
+  useEffect(() => {
+    if (effectRan.current === true) {
+      fetchStocks(axios, dispatch)
+    }
+    return () => {
+      effectRan.current = true
+    }
+  }, [])
+
   return (
     <section id='dashboard'>
       <nav>
@@ -21,7 +35,7 @@ const Dashboard = () => {
           <h1>OVERVIEW</h1>
           <div>
             <p>
-              Welcome, {userData.role}, {userData.name}
+              Welcome, {userData.role} {userData.name}
             </p>
             <img src='' />
           </div>

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
+import { formatPrice } from '../utils/priceFormatter'
 
 const Earnings = () => {
   const { isLoading, error, data } = useQuery({
@@ -14,6 +15,7 @@ const Earnings = () => {
   if (isLoading) return 'Loading...'
 
   if (error) return 'An error has occurred: ' + error.message
+
   return (
     <>
       <div>
@@ -23,10 +25,10 @@ const Earnings = () => {
         <h4>Annual :</h4>
       </div>
       <div>
-        <h4>P {data.daily === null ? '0' : data.daily}</h4>
-        <h4>P {data.weekly === null ? '0' : data.weekly}</h4>
-        <h4>P {data.monthly}</h4>
-        <h4>P {data.yearly}</h4>
+        <h4>P {formatPrice(data.daily)}</h4>
+        <h4>P {formatPrice(data.weekly)}</h4>
+        <h4>P {formatPrice(data.monthly)}</h4>
+        <h4>P {formatPrice(data.yearly)}</h4>
       </div>
     </>
   )

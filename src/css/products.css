@@ -10,6 +10,55 @@
 }
 .phead-1 {
   flex: 1;
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+}
+.phead-1 span {
+  font-size: 20px;
+  margin: 0 20px;
+  cursor: pointer;
+}
+.phead-1 span .notification-container {
+  background-color: #d9d9d9;
+  position: absolute;
+  height: 380px;
+  width: 340px;
+  border-radius: 20px;
+  padding: 10px 10px;
+  overflow-y: auto;
+}
+.notification-item {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  border: 1px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+.badge-notif {
+  user-select: none;
+}
+.notification-item img {
+  border-radius: 20px;
+  margin-right: 5px;
+}
+.blue-icon {
+  color: #2690c6;
+  font-size: 25px;
+}
+/* .notification-item img,
+.notification-item div {
+  flex: 1;
+} */
+.phead-1 span > span {
+  position: relative;
+  top: -10px;
+  right: 20px;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
 }
 .phead-2 {
   flex: 1;
@@ -41,7 +90,6 @@
   flex-wrap: wrap;
 }
 .product-item {
-  background-color: gray;
   width: 400px;
   height: 420px;
   margin: 50px 50px 50px 50px;

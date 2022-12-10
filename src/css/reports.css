@@ -17,6 +17,9 @@
   margin: 0 40px 0 40px;
 }
 .reports-table i {
+  cursor: pointer;
+}
+.reports-table i:hover {
   color: #41b8d5;
   cursor: pointer;
 }
@@ -47,4 +50,8 @@
 }
 .paid-order-print {
   margin: 40px 40px 0;
+}
+.filterReports {
+  height: 30px;
+  margin-right: 10px;
 }

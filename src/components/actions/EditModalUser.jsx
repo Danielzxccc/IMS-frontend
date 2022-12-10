@@ -1,27 +1,55 @@
-import axios from 'axios'
-import React from 'react'
-import { useState } from 'react'
-import { toast, ToastContainer } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+/* eslint-disable react/prop-types */
+import React, { useEffect, useRef, useState } from 'react'
+import '../../css/editmodaluser.css'
 import '../../css/adduser.css'
-import Header from '../header/Header'
-import Sidebar from '../Sidebar'
-import { useRef } from 'react'
-
-const AddUser = () => {
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+const EditModalUser = ({ closeEditModal, id, setReload, reload }) => {
   const navigate = useNavigate()
   const [disable, setDisable] = useState(false)
+  const [openPassword, setOpenPassword] = useState(false)
   const [passErrMsg, setPassErrMsg] = useState('')
   const [contactErrMsg, setContactErrMsg] = useState('')
   const [user, setUser] = useState({
     name: '',
     username: '',
-    password: '',
+    password: null,
     contact: '',
     email: '',
     role: '',
     status: '',
   })
+
+  const handleCheckPassword = (e) => {
+    if (e.target.checked) {
+      setOpenPassword(true)
+    } else {
+      setOpenPassword(false)
+      setPassErrMsg('')
+      setDisable(false)
+    }
+  }
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await axios.get(`/users/get/${id}`)
+      const data = response.data[0]
+
+      setUser({
+        ...user,
+        name: data.name,
+        username: data.username,
+        password: '',
+        contact: data.contact,
+        email: data.email,
+        role: data.role,
+        status: data.status,
+      })
+    }
+
+    fetchUser()
+  }, [])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -32,10 +60,11 @@ const AddUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post('/users/create', user, {
+      const response = await axios.put(`/users/updateuser/${id}`, user, {
         headers: { 'Content-Type': 'application/json' },
       })
-      console.log(response)
+      setReload(!reload)
+      closeEditModal()
       toast.success(`${response?.data?.message}`, {
         position: 'top-center',
         autoClose: 2000,
@@ -92,21 +121,24 @@ const AddUser = () => {
       setDisable(false)
     }
   }
-
   return (
-    <section id='dashboard'>
-      <nav>
-        <Sidebar />
-      </nav>
-      <header>
-        <Header title={'ADD USER'} />
-      </header>
-      <main>
+    <div className='modal-edit-user'>
+      <div className='modal-content-edit-user'>
+        <div className='exit-edit'>
+          <span onClick={closeEditModal}>✖</span>
+        </div>
+        <h3>EDIT USER</h3>
         <form className='adduserform' onSubmit={handleSubmit}>
           <div className='add-user-body'>
             <div>
               <label htmlFor='name'>NAME</label>
-              <input type='text' name='name' required onChange={handleChange} />
+              <input
+                type='text'
+                name='name'
+                required
+                defaultValue={user.name}
+                onChange={handleChange}
+              />
               <label htmlFor='ROLE'>ROLE</label>
               <div className='d-flex'>
                 <input
@@ -167,12 +199,13 @@ const AddUser = () => {
             </div>
           </div>
           <div className='add-user-body'>
-            <div className='user-lower-form'>
+            <div className='user-lower-form input-long'>
               <label htmlFor='email'>EMAIL</label>
               <input
                 type='email'
                 name='email'
                 className='large-input'
+                defaultValue={user.email}
                 onChange={handleChange}
                 required
               />
@@ -187,6 +220,7 @@ const AddUser = () => {
                 className='large-input'
                 name='contact'
                 onChange={validateNumber}
+                defaultValue={user.contact}
                 ref={contactRef}
                 required
               />
@@ -195,50 +229,49 @@ const AddUser = () => {
                 type='text'
                 className='large-input'
                 name='username'
+                defaultValue={user.username}
                 onChange={handleChange}
                 required
               />
-              <label htmlFor='password'>PASSWORD</label>
-              {passErrMsg === '' ? (
-                ''
-              ) : (
-                <p className='pass-error'>{passErrMsg}</p>
-              )}
+              <label htmlFor='check'>Do you want to change the password?</label>
               <input
-                type='password'
-                className='large-input'
-                name='password'
-                onChange={validatePassword}
-                required
-                ref={passRef}
+                type='checkbox'
+                className='check'
+                onChange={handleCheckPassword}
               />
+              {openPassword && (
+                <>
+                  {passErrMsg === '' ? (
+                    ''
+                  ) : (
+                    <p className='pass-error'>{passErrMsg}</p>
+                  )}
+                  <label htmlFor='password'>NEW PASSWORD</label>
+                  <input
+                    type='password'
+                    className='large-input'
+                    name='password'
+                    onChange={validatePassword}
+                    required
+                    ref={passRef}
+                  />
+                </>
+              )}
             </div>
           </div>
           <div className='add-user-footer'>
             {disable ? (
               <button className='btn' disabled>
-                ADD
+                EDIT
               </button>
             ) : (
-              <button className='btn'>ADD</button>
+              <button className='btn'>EDIT</button>
             )}
           </div>
         </form>
-      </main>
-      <ToastContainer
-        position='top-center'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='dark'
-      />
-    </section>
+      </div>
+    </div>
   )
 }
 
-export default AddUser
+export default EditModalUser

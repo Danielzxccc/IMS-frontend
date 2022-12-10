@@ -35,7 +35,6 @@ const ViewModalProducts = ({ setModalView, viewID }) => {
     }
   }, [])
 
-  console.log(product[0].pname)
   return (
     <div className='modal-product-view'>
       <div className='modal-content-product-view'>

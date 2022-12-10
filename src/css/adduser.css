@@ -59,3 +59,6 @@
   display: flex;
   justify-content: center;
 }
+.pass-error {
+  color: red;
+}

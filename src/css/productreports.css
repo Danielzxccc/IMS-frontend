@@ -1,0 +1,19 @@
+.barchart-report-products {
+  background-color: #191919;
+  color: white;
+  border-radius: 20px;
+  height: 300px;
+  width: 800px;
+  display: flex;
+}
+.barchart-report-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.report-eye {
+  cursor: pointer;
+}
+.report-eye:hover {
+  color: #41b8d5;
+}

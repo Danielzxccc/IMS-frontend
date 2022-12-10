@@ -6,7 +6,7 @@ const MultipleUnarchiveModal = ({ multipleUnarchive, setConfirmation }) => {
     <div className='modal-product-archive'>
       <div className='modal-content-product-archive'>
         <div className='modal-archive-product-body'>
-          Are you sure you want to unarchive multiple products ?
+          Are you sure you want to unarchive multiple records ?
         </div>
         <div className='modal-archive-product-footer'>
           <button onClick={multipleUnarchive}>YES</button>

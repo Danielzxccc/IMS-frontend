@@ -4,11 +4,11 @@ import axios from 'axios'
 import React from 'react'
 import { format } from 'date-fns'
 
-const ReportTable = ({ query, openModal }) => {
+const ReportTable = ({ query, openModal, range }) => {
   const { isLoading, error, data } = useQuery({
-    queryKey: ['tableData'],
+    queryKey: ['tableData', range],
     queryFn: async () => {
-      const response = await axios.get('/paidorders/get')
+      const response = await axios.post('/paidorders/get', { range: range })
       return response.data
     },
   })
@@ -26,7 +26,6 @@ const ReportTable = ({ query, openModal }) => {
         <td colSpan={6}>loading...</td>
       </tr>
     )
-  console.log(data)
   return (
     <>
       {data

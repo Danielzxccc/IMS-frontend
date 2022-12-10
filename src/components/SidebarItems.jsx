@@ -8,7 +8,7 @@ const SidebarItems = ({ item }) => {
 
   const { userData } = UserAuth()
   let navigate = useNavigate()
-  const filterrole = userData.role
+  const filterrole = userData?.role
   if (
     filterrole === item.role[0].role1 ||
     filterrole === item.role[0].role2 ||

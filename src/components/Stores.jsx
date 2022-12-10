@@ -9,7 +9,7 @@ const Stores = () => {
         <Sidebar />
       </nav>
       <header>
-        <Header title={'STORE'} />
+        <Header title={'STORE BRANCHES'} />
       </header>
       <main>
         <div className='store-wrapper'>
@@ -22,9 +22,10 @@ const Stores = () => {
               allowFullScreen=''
               loading='lazy'
             ></iframe>
+            <h2>DBTK</h2>
             <h4>
               <span>
-                <i className='bi bi-globe'></i>
+                <i className='bi bi-globe red-icon'></i>
               </span>{' '}
               <a href='https://dbtkco.com/' target='_blank' rel='noreferrer'>
                 https://dbtkco.com/
@@ -32,7 +33,8 @@ const Stores = () => {
             </h4>
             <h4>
               <span>
-                <i className='bi bi-telephone-fill'></i> 0945 577 9652
+                <i className='bi bi-telephone-fill yellow-icon'></i> 0945 577
+                9652
               </span>
             </h4>
           </div>
@@ -46,9 +48,10 @@ const Stores = () => {
               loading='lazy'
               referrerPolicy='no-referrer-when-downgrade'
             ></iframe>
+            <h2>EXTN</h2>
             <h4>
               <span>
-                <i className='bi bi-globe'></i>
+                <i className='bi bi-globe red-icon'></i>
               </span>{' '}
               <a
                 href=' https://www.facebook.com/extnph'
@@ -60,7 +63,8 @@ const Stores = () => {
             </h4>
             <h4>
               <span>
-                <i className='bi bi-telephone-fill'></i> 0945 577 9652
+                <i className='bi bi-telephone-fill yellow-icon'></i> 0945 577
+                9652
               </span>
             </h4>
           </div>
@@ -74,9 +78,10 @@ const Stores = () => {
               loading='lazy'
               referrerPolicy='no-referrer-when-downgrade'
             ></iframe>
+            <h2>HIGHMNDS</h2>
             <h4>
               <span>
-                <i className='bi bi-globe'></i>
+                <i className='bi bi-globe red-icon'></i>
               </span>{' '}
               <a href=' https://www.facebook.com/HGHMNDS/' target='_blank'>
                 {' '}
@@ -85,7 +90,8 @@ const Stores = () => {
             </h4>
             <h4>
               <span>
-                <i className='bi bi-telephone-fill'></i> 0916 406 9200
+                <i className='bi bi-telephone-fill yellow-icon'></i> 0916 406
+                9200
               </span>
             </h4>
           </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Sidebar from './Sidebar'
 import '../css/products.css'
 import axios from 'axios'
@@ -21,11 +21,18 @@ const Products = () => {
   const [delID, setDelID] = useState(null)
   const [editID, setEditID] = useState(null)
   const [productName, setProductName] = useState('')
+  // eslint-disable-next-line no-unused-vars
   const [imageName, setImageName] = useState('')
   const [reload, setReload] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [openNotif, setOpenNotif] = useState(false)
+  const [notifList, setNotifList] = useState([])
 
   // modal functions
+  const handleOpenNotif = () => {
+    setOpenNotif(!openNotif)
+  }
+
   const openDeleteModal = (id, name, image) => {
     setModalDelete(true)
     setDelID(id)
@@ -45,11 +52,30 @@ const Products = () => {
   const openEditModal = (id) => {
     setModalEdit(true)
     setEditID(id)
+    setOpenNotif(false)
   }
 
   const closeEditModal = () => {
     setModalEdit(false)
   }
+
+  const fetchNotif = async () => {
+    try {
+      const response = await axios.get('/paidorders/lowstocks')
+      setNotifList(response.data)
+    } catch (error) {
+      console.log(error.stack)
+    }
+  }
+  const effectRan = useRef(false)
+  useEffect(() => {
+    if (effectRan.current === true) {
+      fetchNotif()
+    }
+    return () => {
+      effectRan.current = true
+    }
+  }, [reload])
 
   const submitDelete = async (id) => {
     try {
@@ -104,7 +130,37 @@ const Products = () => {
       </nav>
       <header>
         <div className='product-head'>
-          <div className='phead-1'></div>
+          <div className='phead-1'>
+            <span>
+              <span>
+                <i
+                  className='bi bi-bell-fill blue-icon'
+                  onClick={handleOpenNotif}
+                ></i>
+                <span className='badge-notif'>{notifList.length}</span>
+              </span>
+              {openNotif && (
+                <div className='notification-container'>
+                  {notifList.map((item, index) => (
+                    <div
+                      className='notification-item'
+                      key={index}
+                      onClick={() => openEditModal(item.id)}
+                    >
+                      <img
+                        src={item.pimageurl}
+                        alt=''
+                        height={100}
+                        width={100}
+                      />
+                      <div>Product {item.pname} is on low stock</div>
+                      <div></div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </span>
+          </div>
           <div className='phead-2'>
             <h1>ALL PRODUCTS</h1>
           </div>

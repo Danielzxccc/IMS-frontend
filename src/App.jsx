@@ -3,7 +3,6 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
 import Dashboard from './components/Dashboard'
-
 import Unauthorize from './components/Unauthorize'
 import Login from './components/Login'
 import PersistLogin from './components/PersistLogin'
@@ -16,16 +15,30 @@ import ProductArchive from './components/archives/ProductArchive'
 import Stores from './components/Stores'
 import AddUser from './components/users/AddUser'
 import ManageUsers from './components/users/ManageUsers'
+import UserArchives from './components/archives/UserArchives'
+import ProductReports from './components/reports/ProductReports'
+import GenerateProductReport from './components/reports/GenerateProductReport'
+import SalesReports from './components/reports/SalesReports'
+import Logout from './components/actions/Logout'
+import Profile from './components/Profile'
+import { useReducer } from 'react'
+import { ToastContainer } from 'react-toastify'
 
 const ROLES = {
   Employee: 'Employee',
-  ReportStaff: 'ReportStaff',
   Admin: 'Admin',
 }
 
 const queryClient = new QueryClient()
 
+function reducer(state, action) {
+  if (action.type === 'emitNotif') {
+    return action.payload
+  }
+}
+
 function App() {
+  const [state, dispatch] = useReducer(reducer, { data: null })
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
@@ -34,30 +47,52 @@ function App() {
           <Route element={<PersistLogin />}>
             <Route
               element={
-                <PrivateRoute
-                  allowedRoles={[
-                    ROLES.Employee,
-                    ROLES.ReportStaff,
-                    ROLES.Admin,
-                  ]}
-                />
+                <PrivateRoute allowedRoles={[ROLES.Employee, ROLES.Admin]} />
               }
             >
-              <Route path='/dashboard' element={<Dashboard />} />
+              <Route
+                path='/dashboard'
+                element={<Dashboard state={state} dispatch={dispatch} />}
+              />
               <Route path='/manageproducts' element={<Products />} />
               <Route path='/archiveproducts' element={<ProductArchive />} />
-              <Route path='/reports' element={<Reports />} />
-              <Route path='/paidorders' element={<PaidOrders />} />
+              <Route path='/archiveusers' element={<UserArchives />} />
+              <Route path='/salesreports' element={<Reports />} />
+              <Route path='/productreports' element={<ProductReports />} />
+              <Route
+                path='/productreports/generate'
+                element={<GenerateProductReport />}
+              />
+              <Route path='/salesreports/generate' element={<SalesReports />} />
+              <Route
+                path='/paidorders'
+                element={<PaidOrders dispatch={dispatch} />}
+              />
               <Route path='/adduser' element={<AddUser />} />
               <Route path='/manageuser' element={<ManageUsers />} />
             </Route>
             <Route path='/unauthorize' element={<Unauthorize />} />
             <Route path='/stores' element={<Stores />} />
+            <Route path='/viewprofile' element={<Profile />} />
+            <Route path='/logout' element={<Logout />} />
           </Route>
           <Route path='/' element={<Login />} />
           <Route path='/*' element={<MissingPage />} />
         </Routes>
       </Router>
+      <ToastContainer
+        position='top-center'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='dark'
+        onClick={() => (window.location.href = '/manageproducts')}
+      />
     </QueryClientProvider>
   )
 }

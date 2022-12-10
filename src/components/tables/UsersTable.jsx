@@ -3,9 +3,9 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 
-const UsersTable = ({ query }) => {
+const UsersTable = ({ query, openDeleteModal, openEditModal, reload }) => {
   const { isLoading, error, data } = useQuery({
-    queryKey: ['userTableData'],
+    queryKey: ['userTableData', reload],
     queryFn: async () => {
       const response = await axios.get('/users/get')
       return response.data
@@ -30,7 +30,7 @@ const UsersTable = ({ query }) => {
       {data
         .filter((item) => {
           return Object.keys(item).some((key) =>
-            item[key].toString().toLowerCase().includes(query.toLowerCase())
+            item[key]?.toString().toLowerCase().includes(query.toLowerCase())
           )
         })
         .map((item, index) => (
@@ -44,8 +44,14 @@ const UsersTable = ({ query }) => {
             <td>{item.username}</td>
             <td>
               <span>
-                <i className='bi bi-pencil-square'></i>
-                <i className='bi bi-trash-fill'></i>
+                <i
+                  className='bi bi-pencil-square'
+                  onClick={() => openEditModal(item.id)}
+                ></i>
+                <i
+                  className='bi bi-trash-fill'
+                  onClick={() => openDeleteModal(item.id, item.name)}
+                ></i>
               </span>
             </td>
           </tr>

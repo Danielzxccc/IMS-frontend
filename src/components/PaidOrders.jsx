@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import Sidebar from './Sidebar'
 import '../css/paidorders.css'
@@ -6,8 +7,9 @@ import { useRef } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import Header from './header/Header'
+import { fetchStocks } from './utils/notifEmmitter'
 
-const PaidOrders = () => {
+const PaidOrders = ({ dispatch }) => {
   const [pickup, setPickup] = useState(true)
   const [products, setProducts] = useState([])
   const [size, setSize] = useState('')
@@ -67,7 +69,7 @@ const PaidOrders = () => {
   useEffect(() => {
     setTprice(paidOrders.quantity * price)
     if (quantity.current.value === stocks) {
-      toast.error('SOBRA KA NA Bhi3', {
+      toast.error('Quantity exceeded the available stocks', {
         position: 'top-center',
         autoClose: 1000,
         hideProgressBar: false,
@@ -153,8 +155,10 @@ const PaidOrders = () => {
           progress: undefined,
           theme: 'dark',
         })
+
       setTimeout(() => {
-        navigate('/reports')
+        fetchStocks(axios, dispatch)
+        navigate('/salesreports')
       }, 2000)
     } catch (error) {
       console.log(error)
@@ -282,7 +286,7 @@ const PaidOrders = () => {
                 <>
                   <label>DELIVERY METHOD</label>
                   <select name='dmethod' onChange={handleChange}>
-                    <option value='PICK UP'>PICK UP</option>
+                    <option value='JT'>J&T DELIVERY</option>
                     <option value='LALAMOVE'>LALAMOVE</option>
                     <option value='NINJAVAN'>NINJAVAN</option>
                   </select>

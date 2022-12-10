@@ -22,7 +22,7 @@
   text-decoration: underline;
   cursor: pointer;
 }
-table,
+/* table,
 td,
 th {
   border: 1px solid black;
@@ -41,4 +41,4 @@ th {
   height: 40px;
   color: #fff;
   background-color: #191919;
-}
+} */

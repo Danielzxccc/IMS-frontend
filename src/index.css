@@ -21,6 +21,18 @@
   grid-template-rows: 80px 1fr;
   grid-template-columns: 300px 1fr;
 }
+#generate {
+  color: black;
+  display: grid;
+  grid-template-areas:
+    'nav content content'
+    'nav content content'
+    'nav content content';
+  height: 100%;
+  width: 100%;
+  grid-template-rows: 1fr;
+  grid-template-columns: 300px 1fr;
+}
 nav {
   grid-area: nav;
 }
