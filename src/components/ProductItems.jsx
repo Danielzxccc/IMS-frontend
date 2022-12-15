@@ -11,6 +11,7 @@ const ProductItems = ({
   openEditModal,
   openDeleteModal,
   reload,
+  role,
 }) => {
   const { isLoading, error } = useQuery({
     queryKey: ['Products', reload],
@@ -33,7 +34,10 @@ const ProductItems = ({
           <div className='product-item' key={index}>
             <img src={item.pimageurl} width={300} height={300} />
             <div className='product-info'>
-              <p>Product Name: {item.pname}</p>
+              <p>
+                Product Name: {item.pname} - {item.pcategory} - {item.psize} -{' '}
+                {item.pcolor}
+              </p>
               <p>Category: {item.pcategory}</p>
             </div>
             <div className='product-actions'>
@@ -45,16 +49,22 @@ const ProductItems = ({
                 VIEW MORE
               </div>
               <div className='action-div3'>
-                <i
-                  className='bi bi-pencil-square'
-                  onClick={() => openEditModal(item.id)}
-                ></i>
-                <i
-                  className='bi bi-trash3-fill'
-                  onClick={() =>
-                    openDeleteModal(item.id, item.pname, item.pimagename)
-                  }
-                ></i>
+                {role === 'Admin' ? (
+                  <>
+                    <i
+                      className='bi bi-pencil-square'
+                      onClick={() => openEditModal(item.id)}
+                    ></i>
+                    <i
+                      className='bi bi-trash3-fill'
+                      onClick={() =>
+                        openDeleteModal(item.id, item.pname, item.pimagename)
+                      }
+                    ></i>
+                  </>
+                ) : (
+                  ''
+                )}
               </div>
             </div>
           </div>

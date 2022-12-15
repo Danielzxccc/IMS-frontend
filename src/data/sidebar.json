@@ -36,21 +36,24 @@
         "icon": "bi bi-flag",
         "path": "/",
         "role" : [{
-            "role1" : "Admin"
+            "role1" : "Admin",
+            "role2" : "Employee"
         }],
         "childrens": [
             {
                 "title": "Product Reports",
                 "path": "/productreports",
                 "role" : [{
-                    "role1" : "Admin"
+                    "role1" : "Admin",
+                    "role2" : "Employee"
                 }]
             },
             {
                 "title": "Order Reports",
                 "path": "/salesreports",
                 "role" : [{
-                    "role1" : "Admin"
+                    "role1" : "Admin",
+                    "role2" : "Employee"
                 }]
             }
         ]

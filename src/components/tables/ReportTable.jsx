@@ -42,9 +42,7 @@ const ReportTable = ({ query, openModal, range }) => {
             <td>
               {item.street} {item.barangay} {item.city} {item.region}
             </td>
-            <td>
-              {item.pname} {item.pcolor} {item.psize}
-            </td>
+            <td>{item.pname}</td>
             <td>
               <i
                 className='fa-solid fa-eye'

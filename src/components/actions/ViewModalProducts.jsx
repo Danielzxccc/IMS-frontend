@@ -44,7 +44,11 @@ const ViewModalProducts = ({ setModalView, viewID }) => {
           </div>
           <div className='product-view-info'>
             <p>
-              PRODUCT NAME: <span>{product[0].pname}</span>
+              PRODUCT NAME:{' '}
+              <span>
+                {product[0].pname} - {product[0].pcategory} - {product[0].psize}{' '}
+                - {product[0].pcolor}
+              </span>
             </p>
             <p>
               PRODUCT ID: <span>{product[0].id}</span>

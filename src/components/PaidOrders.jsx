@@ -266,7 +266,8 @@ const PaidOrders = ({ dispatch }) => {
                   .filter((data) => data.stocks > 0)
                   .map((item, index) => (
                     <option value={item.id} key={index}>
-                      {item.pname}
+                      {item.pname} - {item.pcategory} - {item.psize} -{' '}
+                      {item.pcolor}
                     </option>
                   ))}
               </select>

@@ -160,7 +160,7 @@ const EditModalUser = ({ closeEditModal, id, setReload, reload }) => {
                 />
                 <label htmlFor='role'>EMPLOYEE</label>
               </div>
-              <div className='d-flex'>
+              {/* <div className='d-flex'>
                 <input
                   type='radio'
                   name='role'
@@ -169,7 +169,7 @@ const EditModalUser = ({ closeEditModal, id, setReload, reload }) => {
                   required
                 />
                 <label htmlFor='role'>REPORT STAFF</label>
-              </div>
+              </div> */}
             </div>
             <div>
               <label htmlFor='status' className='user-status'>

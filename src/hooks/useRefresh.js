@@ -7,7 +7,7 @@ const useRefresh = () => {
   const refresh = async () => {
     const response = await axios.get('/auth/refresh')
 
-    setUserData(response.data.user)
+    setUserData((prev) => response.data.user)
     setToken(true)
     return response.data.user
   }

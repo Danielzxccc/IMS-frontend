@@ -128,7 +128,7 @@ const AddUser = () => {
                 />
                 <label htmlFor='role'>EMPLOYEE</label>
               </div>
-              <div className='d-flex'>
+              {/* <div className='d-flex'>
                 <input
                   type='radio'
                   name='role'
@@ -137,7 +137,7 @@ const AddUser = () => {
                   required
                 />
                 <label htmlFor='role'>REPORT STAFF</label>
-              </div>
+              </div> */}
             </div>
             <div>
               <label htmlFor='status' className='user-status'>

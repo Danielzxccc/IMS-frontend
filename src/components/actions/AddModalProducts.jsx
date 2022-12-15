@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import '../../css/addmodalproducts.css'
 import { toast } from 'react-toastify'
 import { storage } from '../../firebase'
+import { useRef } from 'react'
 const AddModalProducts = ({ setModalAdd, setReload, setLoading, reload }) => {
   const [products, setProducts] = useState({
     pname: '',
@@ -21,6 +22,7 @@ const AddModalProducts = ({ setModalAdd, setReload, setLoading, reload }) => {
   })
   const [file, setFile] = useState(null)
   const [imageUpload, setImageUpload] = useState(null)
+  const productNameRef = useRef(null)
 
   // handle changes
   const handleProductName = (e) => {
@@ -33,10 +35,12 @@ const AddModalProducts = ({ setModalAdd, setReload, setLoading, reload }) => {
 
   const handleSize = (e) => {
     setProducts({ ...products, psize: e.target.value })
+    // productNameRef.current.value = `${products.pname} - ${e.target.value} - ${products.pcolor}`
   }
 
   const handleColor = (e) => {
     setProducts({ ...products, pcolor: e.target.value })
+    // productNameRef.current.value = `${products.pname} - ${products.psize} - ${e.target.value}`
   }
 
   const handleProductDescription = (e) => {
@@ -71,7 +75,7 @@ const AddModalProducts = ({ setModalAdd, setReload, setLoading, reload }) => {
       const upload = await uploadImage()
       console.log(upload[0] + ' ' + upload[1])
       const response = await axios.post('/products/create', {
-        pname: products.pname,
+        pname: productNameRef.current.value,
         pcategory: products.pcategory,
         price: products.price,
         pcolor: products.pcolor,
@@ -121,6 +125,7 @@ const AddModalProducts = ({ setModalAdd, setReload, setLoading, reload }) => {
             <div className='left-body-products'>
               <label>PRODUCT NAME</label>
               <input
+                ref={productNameRef}
                 type='text'
                 className='product-name'
                 onChange={handleProductName}
@@ -153,6 +158,7 @@ const AddModalProducts = ({ setModalAdd, setReload, setLoading, reload }) => {
                   <label>SIZE</label>
                   <select name='size' onChange={handleSize} required>
                     <option value='S'>S</option>
+                    <option value='M'>M</option>
                     <option value='L'>L</option>
                     <option value='XL'>XL</option>
                     <option value='XXL'>XXL</option>

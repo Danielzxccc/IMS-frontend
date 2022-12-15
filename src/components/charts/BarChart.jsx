@@ -90,7 +90,7 @@ const BarChart = () => {
   }
   //chart data
   const productData = {
-    labels: products.map((data) => data.pname),
+    labels: products.map((data) => `${data.pname} - ${data.psize}`),
     color: '#FFFFFF',
     datasets: [
       {

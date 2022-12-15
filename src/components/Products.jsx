@@ -9,6 +9,7 @@ import Spinner from './utils/Spinner'
 import ViewModalProducts from './actions/ViewModalProducts'
 import EditModalProducts from './actions/EditModalProducts'
 import ProductItems from './ProductItems'
+import { UserAuth } from '../context/authContext'
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -27,6 +28,8 @@ const Products = () => {
   const [loading, setLoading] = useState(false)
   const [openNotif, setOpenNotif] = useState(false)
   const [notifList, setNotifList] = useState([])
+
+  const { userData } = UserAuth()
 
   // modal functions
   const handleOpenNotif = () => {
@@ -167,7 +170,14 @@ const Products = () => {
           <div className='picons'>
             <input type='text' onChange={(e) => setQuery(e.target.value)} />
             <i className='bi bi-search'></i>
-            <i className='bi bi-plus-lg' onClick={() => setModalAdd(true)}></i>
+            {userData.role === 'Admin' ? (
+              <i
+                className='bi bi-plus-lg'
+                onClick={() => setModalAdd(true)}
+              ></i>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       </header>
@@ -180,6 +190,7 @@ const Products = () => {
             openViewModal={openViewModal}
             openEditModal={openEditModal}
             openDeleteModal={openDeleteModal}
+            role={userData.role}
             reload={reload}
           />
         </div>

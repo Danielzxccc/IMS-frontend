@@ -35,7 +35,9 @@ const ProductTableReports = ({ openViewModal }) => {
     <>
       {data.map((item, index) => (
         <tr key={index}>
-          <td>{item.pname}</td>
+          <td>
+            {item.pname} - {item.pcategory} - {item.psize} - {item.pcolor}{' '}
+          </td>
           <td>P {formatPrice(item.price)}</td>
           <td
             style={{

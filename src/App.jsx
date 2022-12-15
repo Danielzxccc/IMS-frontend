@@ -39,11 +39,13 @@ function reducer(state, action) {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, { data: null })
+  // const navigate = useNavigate()
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
           {/* protected routes */}
+          {/* admin and employee */}
           <Route element={<PersistLogin />}>
             <Route
               element={
@@ -55,8 +57,6 @@ function App() {
                 element={<Dashboard state={state} dispatch={dispatch} />}
               />
               <Route path='/manageproducts' element={<Products />} />
-              <Route path='/archiveproducts' element={<ProductArchive />} />
-              <Route path='/archiveusers' element={<UserArchives />} />
               <Route path='/salesreports' element={<Reports />} />
               <Route path='/productreports' element={<ProductReports />} />
               <Route
@@ -68,9 +68,15 @@ function App() {
                 path='/paidorders'
                 element={<PaidOrders dispatch={dispatch} />}
               />
+            </Route>
+            {/* admin only access */}
+            <Route element={<PrivateRoute allowedRoles={[ROLES.Admin]} />}>
+              <Route path='/archiveproducts' element={<ProductArchive />} />
+              <Route path='/archiveusers' element={<UserArchives />} />
               <Route path='/adduser' element={<AddUser />} />
               <Route path='/manageuser' element={<ManageUsers />} />
             </Route>
+
             <Route path='/unauthorize' element={<Unauthorize />} />
             <Route path='/stores' element={<Stores />} />
             <Route path='/viewprofile' element={<Profile />} />
