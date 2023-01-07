@@ -3,7 +3,6 @@ import Header from './header/Header'
 import Sidebar from './Sidebar'
 import '../css/profile.css'
 import logo from '../assets/logo-white.png'
-import daniel from '../assets/daniel.jpg'
 import jake from '../assets/Arizo.jpeg'
 import { UserAuth } from '../context/authContext'
 import { useQuery } from '@tanstack/react-query'
@@ -63,10 +62,7 @@ const Profile = () => {
 
               <div className='profiledetails'>
                 <div className='profilepic'>
-                  <img
-                    src={userData.role === 'Admin' ? daniel : jake}
-                    className='imgprofile'
-                  />
+                  <img src={jake} className='imgprofile' />
                   <h2>USER ID : {data.id} </h2>
                 </div>
 
