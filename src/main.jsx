@@ -6,7 +6,7 @@ import './index.css'
 import axios from 'axios'
 import 'react-toastify/dist/ReactToastify.css'
 
-axios.defaults.baseURL = 'http://localhost:3500'
+axios.defaults.baseURL = 'https://ims-backend.onrender.com'
 axios.defaults.withCredentials = true
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -93,7 +93,8 @@ const PaidOrders = ({ dispatch }) => {
           city: 'Manila',
           region: 'NCR',
           country: 'Philippines',
-          postal: '1108',
+          postal: 1108,
+          contact: '09164069200',
         })
       } else if (paidOrders.st_name === 'DBTK') {
         setPaidOrders({
@@ -103,7 +104,8 @@ const PaidOrders = ({ dispatch }) => {
           city: 'Quezon City',
           region: 'NCR',
           country: 'Philippines',
-          postal: '1106',
+          postal: 1106,
+          contact: '09455779652',
         })
       } else {
         setPaidOrders({
@@ -366,7 +368,12 @@ const PaidOrders = ({ dispatch }) => {
                 </div>
                 <div className='po-address-input-group'>
                   <label>CONTACT NO.</label>
-                  <input type='text' name='contact' onChange={handleChange} />
+                  <input
+                    type='text'
+                    name='contact'
+                    defaultValue={paidOrders.contact}
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
             </div>
