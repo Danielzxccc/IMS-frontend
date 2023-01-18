@@ -3,7 +3,6 @@ import Header from './header/Header'
 import Sidebar from './Sidebar'
 import '../css/profile.css'
 import logo from '../assets/logo-white.png'
-import jake from '../assets/Arizo.jpeg'
 import { UserAuth } from '../context/authContext'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
@@ -62,7 +61,7 @@ const Profile = () => {
 
               <div className='profiledetails'>
                 <div className='profilepic'>
-                  <img src={jake} className='imgprofile' />
+                  <img src='' className='imgprofile' />
                   <h2>USER ID : {data.id} </h2>
                 </div>
 
